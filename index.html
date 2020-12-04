@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    
+</head>
+<body>
+    
+    <div id="app">
+        {{ message }}
+
+        <!-- v-on yerine @ isareti koyabilirsin -->
+        <input type="text" v-model="userComment" v-on:keyup.enter="addComment"/> 
+
+        <button v-if="userComment.length>0" @click="addComment">Ekle</button>
+        <h1>
+            {{userComment}}
+        </h1>
+
+        <ul>
+            <li v-for="comment in userComments">
+                {{comment}}
+            </li>
+        </ul> 
+
+      </div>
+      <script>
+        var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue!',
+            userComment:'Selamlar',
+            userComments:[
+                'Vue is great',
+                'I love Vue',
+                'Vue is easy to learn'
+            ]
+        },
+        methods:{
+            addComment:function(){
+                this.userComments.push(this.userComment) //inputan gelen değeri push yapıp ekleme işlemi
+            }
+        }
+        })
+
+
+      </script>
+
+
+</body>
+</html>
